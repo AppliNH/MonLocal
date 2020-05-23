@@ -8,20 +8,12 @@ import NotFound from './screens/NotFound';
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import theme from './theme';
 
-const Root = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={App}></Route>
-      {/* <Route path="/username/:username" component={App}></Route> */}
-      <Route component={NotFound}></Route>
-    </Switch>
-  </BrowserRouter>
-)
+
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
     <React.StrictMode>
-      <Root />
+      <App />
     </React.StrictMode>
   </MuiThemeProvider>,
   document.getElementById('root')

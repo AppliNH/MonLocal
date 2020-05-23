@@ -5,7 +5,9 @@ import Navbar from './components/Navbar/Navbar';
 import BottomNavig from "./components/Navbar/BottomNavig";
 
 
-import{ Component } from 'react';
+import { Component } from 'react';
+import Main from './screens/Main';
+import Root from './Root';
 
 class App extends Component {
 
@@ -13,32 +15,29 @@ class App extends Component {
 
   updateDimensions = () => {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
-    console.log(window.innerWidth,window.innerHeight)
+    console.log(window.innerWidth, window.innerHeight)
   };
 
   componentDidMount() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
     window.addEventListener('resize', this.updateDimensions);
   }
 
   render() {
-    
+
     return (
       this.state.width > 768 ?
-      
-      <div>
-        <Navbar />
-        <div className="App">
-          <h1>Welcome !</h1>
+
+        <div>
+          <Navbar />
+          <Root />
         </div>
-      </div>
-      :
-      <div>
-        <div className="App">
-          <h1>Welcome !</h1>
+        :
+        <div>
+          <Root />
+          <BottomNavig />
         </div>
-        <BottomNavig />
-      </div>
-   
+
     );
   }
 }
