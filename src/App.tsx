@@ -7,7 +7,12 @@ import BottomNavig from "./components/Navbar/BottomNavig";
 
 import { Component } from 'react';
 import Main from './screens/Main';
-import Root from './Root';
+import { BrowserRouter } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import Articles from './screens/Articles';
+import NotFound from './screens/NotFound';
+import Recipes from './screens/Recipes';
 
 class App extends Component {
 
@@ -26,18 +31,16 @@ class App extends Component {
   render() {
 
     return (
-      this.state.width > 768 ?
-
-        <div>
-          <Navbar />
-          <Root />
-        </div>
-        :
-        <div>
-          <Root />
-          <BottomNavig />
-        </div>
-
+      <BrowserRouter>
+      {this.state.width > 768 ? <Navbar /> : null}
+        <Switch>
+          <Route exact path="/" component={Main}></Route>
+          <Route exact path="/articles" component={Articles}></Route>
+          <Route exact path="/recipes" component={Recipes}></Route>
+          <Route component={NotFound}></Route>
+        </Switch>
+        {this.state.width <= 768 ? <BottomNavig /> : null}
+      </BrowserRouter>
     );
   }
 }

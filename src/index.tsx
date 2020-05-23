@@ -7,6 +7,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NotFound from './screens/NotFound';
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import theme from './theme';
+import Main from './screens/Main';
+import Articles from './screens/Articles';
 
 
 

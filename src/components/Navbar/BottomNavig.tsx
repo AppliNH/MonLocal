@@ -5,8 +5,6 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from '@material-ui/icons/Home';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MenuBook from '@material-ui/icons/MenuBook';
-import "./BottomNavig.css";
-
 
 export default function BottomNavig() {
 
