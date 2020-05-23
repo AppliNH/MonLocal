@@ -39,7 +39,7 @@ class App extends Component {
           <Route exact path="/recipes" component={Recipes}></Route>
           <Route component={NotFound}></Route>
         </Switch>
-        {this.state.width <= 768 ? <BottomNavig /> : null}
+        {this.state.width <= 768 ? <BottomNavig  currentRoute={window.location.pathname} /> : null}
       </BrowserRouter>
     );
   }

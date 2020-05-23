@@ -5,25 +5,40 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from '@material-ui/icons/Home';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MenuBook from '@material-ui/icons/MenuBook';
+import { Link } from 'react-router-dom';
+import { Component } from 'react'
 
-export default function BottomNavig() {
+interface BottomNavigProps {
+  currentRoute: string
+}
+export default class BottomNavig extends Component<BottomNavigProps> {
 
-  const [value, setValue] = React.useState(0);
+  constructor(props: BottomNavigProps) {
+    super(props);
+  }
 
-  return (
-    <BottomNavigation
-      
-      style={{ width: '100%', position: 'fixed', bottom: 0 }}
-      value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue);
-      }}
-      showLabels
+  state = { value: this.props.currentRoute }
 
-    >
-      <BottomNavigationAction label="Accueil" icon={<HomeIcon />} />
-      <BottomNavigationAction label="Faire mes courses" icon={<ShoppingCart />} />
-      <BottomNavigationAction label="Recettes" icon={<MenuBook />} />
-    </BottomNavigation>
-  );
+
+  render() {
+    return (
+      <BottomNavigation
+        style={{ width: '100%', position: 'fixed', bottom: 0 }}
+        value={this.state.value}
+        onChange={(event, newValue) => {
+          this.setState({ value: newValue });
+        }}
+        showLabels>
+        <BottomNavigationAction component={Link}
+          to="/"
+          value="/" label="Accueil" icon={<HomeIcon />} />
+        <BottomNavigationAction component={Link}
+          to="/articles"
+          value="/articles" label="Faire mes courses" icon={<ShoppingCart />} />
+        <BottomNavigationAction component={Link}
+          to="/recipes"
+          value="/recipes" label="Recettes" icon={<MenuBook />} />
+      </BottomNavigation>
+    )
+  }
 }
