@@ -7,14 +7,14 @@ class Navbar extends Component {
             <AppBar elevation={2} style={{ backgroundColor: "#35b8be" }} position="static">
                 <Toolbar>
                     <Box display="flex" justifyContent="center" flexDirection="row">
-                        <LocalMall style={{ alignSelf: "center",marginRight:5 }} />
-                        <Typography variant="h6" >MonLocal</Typography>
+                        <LocalMall style={{ color:"white", alignSelf: "center",marginRight:5 }} />
+                        <Typography style={{ color:"white"}} variant="h6" >MonLocal</Typography>
                     </Box>
-                    {/* <div style={{ marginLeft: "auto" }}>
-                        <Button style={{ marginRight: 5, backgroundColor: "#35b8be" }} color="inherit" variant="contained" >Accueil</Button>
-                        <Button style={{ marginRight: 5, backgroundColor: "#35b8be" }} color="inherit" variant="contained" >Faire mes courses</Button>
-                        <Button style={{ marginRight: 5, backgroundColor: "#35b8be" }} color="inherit" variant="contained">Recettes</Button>
-                    </div> */}
+                    <div style={{ marginLeft: "auto" }}>
+                        <Button style={{ color:"white",marginRight: 5, backgroundColor: "#35b8be" }} color="inherit" variant="contained" >Accueil</Button>
+                        <Button style={{ color:"white",marginRight: 5, backgroundColor: "#35b8be" }} color="inherit" variant="contained" >Faire mes courses</Button>
+                        <Button style={{ color:"white",marginRight: 5, backgroundColor: "#35b8be" }} color="inherit" variant="contained">Recettes</Button>
+                    </div>
                 </Toolbar>
             </AppBar>
         );

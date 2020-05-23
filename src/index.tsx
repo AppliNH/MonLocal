@@ -3,11 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import NotFound from './screens/NotFound';
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import theme from './theme';
+
+const Root = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={App}></Route>
+      {/* <Route path="/username/:username" component={App}></Route> */}
+      <Route component={NotFound}></Route>
+    </Switch>
+  </BrowserRouter>
+)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <MuiThemeProvider theme={theme}>
+    <React.StrictMode>
+      <Root />
+    </React.StrictMode>
+  </MuiThemeProvider>,
   document.getElementById('root')
 );
 

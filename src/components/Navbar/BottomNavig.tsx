@@ -5,22 +5,23 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from '@material-ui/icons/Home';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MenuBook from '@material-ui/icons/MenuBook';
+import "./BottomNavig.css";
 
 
-
-export default function SimpleBottomNavigation() {
+export default function BottomNavig() {
 
   const [value, setValue] = React.useState(0);
 
   return (
     <BottomNavigation
-    style={{ width: '100%',position: 'fixed',bottom: 0}}
+      
+      style={{ width: '100%', position: 'fixed', bottom: 0 }}
       value={value}
       onChange={(event, newValue) => {
         setValue(newValue);
       }}
       showLabels
-    
+
     >
       <BottomNavigationAction label="Accueil" icon={<HomeIcon />} />
       <BottomNavigationAction label="Faire mes courses" icon={<ShoppingCart />} />
