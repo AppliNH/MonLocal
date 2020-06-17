@@ -27,7 +27,7 @@ class Main extends Component<MainProps> {
       <div className="App">
       <div>
         <h1 style={{ fontSize: "5em" }}>Bonjour !</h1>
-        <h1>Que voulez-vous faire aujourd'hui ?</h1>
+        <h1 style={{marginLeft: 10}}>Que voulez-vous faire aujourd'hui ?</h1>
       </div>
 
       <Link style={{ textDecoration: 'none' }} onClick={()=>this._updateRoute("/articles")} to="/articles">

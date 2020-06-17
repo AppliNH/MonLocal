@@ -1,7 +1,7 @@
 import { UPDATE_ROUTE } from "../actionTypes";
 
 const initialState = {
-  route: window.location.pathname
+  route: window.location.pathname,
 };
 
 export default function (state = initialState, action) {
@@ -9,10 +9,7 @@ export default function (state = initialState, action) {
   switch (action.type) {
 
     case UPDATE_ROUTE: {
-      console.log("UPDATE_ROUTE")
       const { route } = action.payload;
-      console.log(initialState.route)
-      console.log(route)
       nextState = {
         ...state,
         route: route
