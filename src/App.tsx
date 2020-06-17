@@ -16,10 +16,10 @@ import Recipes from './screens/Recipes';
 
 class App extends Component {
 
-  state = { width: 0, height: 0 };
+  state = { width: 0, height: 0, currentScreen:"/" };
 
   updateDimensions = () => {
-    this.setState({ width: window.innerWidth, height: window.innerHeight });
+    this.setState({ width: window.innerWidth, height: window.innerHeight});
     console.log(window.innerWidth, window.innerHeight)
   };
 
@@ -39,7 +39,7 @@ class App extends Component {
           <Route exact path="/recipes" component={Recipes}></Route>
           <Route component={NotFound}></Route>
         </Switch>
-        {this.state.width <= 768 ? <BottomNavig  currentRoute={window.location.pathname} /> : null}
+        {this.state.width <= 768 ? <BottomNavig /> : null}
       </BrowserRouter>
     );
   }

@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Button, Theme, createStyles, makeStyles, Icon, Box } from '@material-ui/core';
 import LocalMall from '@material-ui/icons/LocalMall';
-
+import {updateRoute} from "../../redux/actions";
 import { withRouter } from "react-router";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
-class Navbar extends React.Component {
+interface NavbarProps {
+    route: string
+    updateRoute: Function
+}
 
-    redirectTo(path: string) {
-        return <Redirect to={path}/>
+class Navbar extends React.Component<NavbarProps>{
+
+    constructor(props: NavbarProps) {
+        super(props);
     }
+
+    dispatchRoute(path: string) {
+        this.props.updateRoute(path);
+      }
 
     render() {
         return (
@@ -20,9 +30,9 @@ class Navbar extends React.Component {
                         <Typography style={{ color:"white"}} variant="h6" >MonLocal</Typography>
                     </Box>
                     <div style={{ marginLeft: "auto" }}>
-                        <Link  style={{ textDecoration: 'none' }} to="/"><Button style={{ color:"white",marginRight: 5, backgroundColor: "#35b8be" }} color="inherit" variant="contained" >Accueil</Button></Link>
-                        <Link  style={{ textDecoration: 'none' }} to="/articles"><Button style={{ color:"white",marginRight: 5, backgroundColor: "#35b8be" }} color="inherit" variant="contained" >Faire mes courses</Button></Link>
-                        <Link  style={{ textDecoration: 'none' }} to="/recipes"><Button style={{ color:"white",marginRight: 5, backgroundColor: "#35b8be" }} color="inherit" variant="contained">Recettes</Button></Link>
+                        <Link  style={{ textDecoration: 'none' }} onClick={()=>this.dispatchRoute("/")} to="/"><Button style={{ color:"white",marginRight: 5, backgroundColor: "#35b8be" }} color="inherit" variant="contained" >Accueil</Button></Link>
+                        <Link  style={{ textDecoration: 'none' }} onClick={()=>this.dispatchRoute("/articles")} to="/articles"><Button style={{ color:"white",marginRight: 5, backgroundColor: "#35b8be" }} color="inherit" variant="contained" >Faire mes courses</Button></Link>
+                        <Link  style={{ textDecoration: 'none' }} onClick={()=>this.dispatchRoute("/recipes")} to="/recipes"><Button style={{ color:"white",marginRight: 5, backgroundColor: "#35b8be" }} color="inherit" variant="contained">Recettes</Button></Link>
                     </div>
                 </Toolbar>
             </AppBar>
@@ -30,4 +40,11 @@ class Navbar extends React.Component {
     }
 }
 
-export default Navbar
+
+const mapStateToProps = (state:any) => {
+    return {
+      route: state.data.route
+    }
+  }
+
+export default connect(mapStateToProps,{ updateRoute })(Navbar);

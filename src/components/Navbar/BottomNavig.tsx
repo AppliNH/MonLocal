@@ -7,38 +7,57 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MenuBook from '@material-ui/icons/MenuBook';
 import { Link } from 'react-router-dom';
 import { Component } from 'react'
+import { connect } from "react-redux";
+import {updateRoute} from "../../redux/actions";
 
 interface BottomNavigProps {
-  currentRoute: string
+  route: string
+  updateRoute: Function
 }
-export default class BottomNavig extends Component<BottomNavigProps> {
+class BottomNavig extends Component<BottomNavigProps> {
 
   constructor(props: BottomNavigProps) {
     super(props);
   }
+  componentDidUpdate() {
+    console.log(this.props.route);
+    
+  }
 
-  state = { value: this.props.currentRoute }
-
+  dispatchRoute(path: string) {
+    this.props.updateRoute(path);
+  }
 
   render() {
     return (
       <BottomNavigation
         style={{ width: '100%', position: 'fixed', bottom: 0 }}
-        value={this.state.value}
+        value={this.props.route}
         onChange={(event, newValue) => {
-          this.setState({ value: newValue });
+          this.dispatchRoute(newValue)
+          //this.setState({ value: newValue });
         }}
         showLabels>
         <BottomNavigationAction component={Link}
           to="/"
+          onClick={()=>this.dispatchRoute("/")}
           value="/" label="Accueil" icon={<HomeIcon />} />
         <BottomNavigationAction component={Link}
           to="/articles"
+          onClick={()=>this.dispatchRoute("/articles")}
           value="/articles" label="Faire mes courses" icon={<ShoppingCart />} />
         <BottomNavigationAction component={Link}
           to="/recipes"
+          onClick={()=>this.dispatchRoute("/recipes")}
           value="/recipes" label="Recettes" icon={<MenuBook />} />
       </BottomNavigation>
     )
   }
+};
+const mapStateToProps = (state:any) => {
+  return {
+    route: state.data.route
+  }
 }
+
+export default connect(mapStateToProps,{ updateRoute })(BottomNavig);
