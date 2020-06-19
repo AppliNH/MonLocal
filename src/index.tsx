@@ -14,6 +14,7 @@ import { Provider } from 'react-redux';
 
 
 ReactDOM.render(
+
   <MuiThemeProvider theme={theme}>
     <React.StrictMode>
       <Provider store={store}>

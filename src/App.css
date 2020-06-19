@@ -1,7 +1,10 @@
-.App {
+/* .App {
   padding: 0.5em;
-}
+} */
 
+.AppHome {
+  background: url("./assets/bg2.png");
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

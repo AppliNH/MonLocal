@@ -1,11 +1,104 @@
 import React, { Component } from 'react'
+import FishMan from "../assets/fishman.png"
+import MeatMan from "../assets/meatman.png"
+import Chicken from "../assets/chicken.png"
+import MouseCursor from "../assets/mousecursor.png"
+import Finger from "../assets/finger.png"
+import { Card, Button, } from '@material-ui/core'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Intro from './articles/Intro'
+import NotFound from './NotFound'
+import { connect } from 'react-redux'
+import { updateArticlesStage } from "../redux/actions"
+import StallScreen from './articles/StallScreen'
+import Stall from "../_models/StallModel";
 
-export default class Articles extends Component {
+interface ArticlesProps {
+    stageNumber: number;
+    updateArticlesStage: Function;
+    stalls: Array<Stall>;
+}
+
+class Articles extends Component<ArticlesProps> {
+
+    state = { stageNumber: this.props.stageNumber }
+
+    // stages: Array<Stall> = [{
+    //     name: "",
+    //     backgroundImage: "",
+    //     items: []
+    // },
+    // {
+    //     name: "Poissonier",
+    //     backgroundImage: FishMan,
+    //     items: [
+    //         {
+    //             name: "Saumon",
+    //             price: 2.30
+    //         },
+    //         {
+    //             name: "Colin",
+    //             price: 2.15
+    //         },
+    //         {
+    //             name: "Sol",
+    //             price: 2.15
+    //         },
+    //     ]
+    // },
+    // {
+    //     name: "Boucher",
+    //     backgroundImage: MeatMan,
+    //     items: [
+    //         {
+    //             name: "Poulet",
+    //             price: 4.30
+    //         },
+    //         {
+    //             name: "Colin",
+    //             price: 2.15
+    //         },
+    //         {
+    //             name: "Sol",
+    //             price: 2.15
+    //         },
+    //     ]
+    // }
+    // ];
+
+    nextStage = () =>{
+        console.log("ok");
+        console.log(this.props.stageNumber)
+        var stageN = this.props.stageNumber + 1
+        this.props.updateArticlesStage(stageN)
+    }
+    previousStage() {
+        var stageN = this.props.stageNumber - 1
+        this.props.updateArticlesStage(stageN)
+    }
+
     render() {
         return (
             <div className="App">
-                <h1>Articles !</h1>
+                {
+                    this.props.stageNumber == 0
+                        ?
+                        <Intro nextStage={this.nextStage}/>
+                        :
+                        <StallScreen />
+
+                }
             </div>
         )
     }
 }
+
+
+const mapStateToProps = (state: any) => {
+    return {
+        stageNumber: state.stallsdata.stageNumber,
+        stalls: state.stallsdata.stalls
+    }
+}
+
+export default connect(mapStateToProps, { updateArticlesStage })(Articles);
