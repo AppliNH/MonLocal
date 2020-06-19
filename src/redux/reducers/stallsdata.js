@@ -17,7 +17,7 @@ const initialState = {
   },
   {
     name: "Poissonier",
-    color: "blue",
+    color: "#3583be",
     backgroundImage: FishMan,
     items: [
       {
@@ -35,6 +35,27 @@ const initialState = {
         price: 25.15,
         image: Fish
       },
+      {
+        name: "Sol",
+        price: 25.15,
+        image: Fish
+      },
+      {
+        name: "Sol",
+        price: 25.15,
+        image: Fish
+      },
+      {
+        name: "Sol",
+        price: 25.15,
+        image: Fish
+      },
+      {
+        name: "Sol",
+        price: 25.15,
+        image: Fish
+      },
+      
     ]
   },
   {

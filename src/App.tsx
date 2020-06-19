@@ -16,10 +16,10 @@ import Recipes from './screens/Recipes';
 
 class App extends Component {
 
-  state = { width: 0, height: 0, currentScreen:"/" };
+  state = { width: 0, height: 0, currentScreen: "/" };
 
   updateDimensions = () => {
-    this.setState({ width: window.innerWidth, height: window.innerHeight});
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
     console.log(window.innerWidth, window.innerHeight)
   };
 
@@ -32,13 +32,15 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-      {this.state.width > 768 ? <Navbar /> : null}
-        <Switch>
-          <Route exact path="/" component={Main}></Route>
-          <Route exact path="/articles" component={Articles}></Route>
-          <Route exact path="/recipes" component={Recipes}></Route>
-          <Route component={NotFound}></Route>
-        </Switch>
+        {this.state.width > 768 ? <Navbar /> : null}
+        <div style={{ marginTop: this.state.width > 768 ? "4em" : 0, marginBottom: this.state.width <= 768 ? 0 : 0 }}>
+          <Switch>
+            <Route exact path="/" component={Main}></Route>
+            <Route exact path="/articles" component={Articles}></Route>
+            <Route exact path="/recipes" component={Recipes}></Route>
+            <Route component={NotFound}></Route>
+          </Switch>
+        </div>
         {this.state.width <= 768 ? <BottomNavig /> : null}
       </BrowserRouter>
     );

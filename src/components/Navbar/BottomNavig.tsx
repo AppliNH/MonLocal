@@ -8,7 +8,8 @@ import MenuBook from '@material-ui/icons/MenuBook';
 import { Link } from 'react-router-dom';
 import { Component } from 'react'
 import { connect } from "react-redux";
-import {updateRoute} from "../../redux/actions";
+import { updateRoute } from "../../redux/actions";
+import { Card } from '@material-ui/core';
 
 interface BottomNavigProps {
   route: string
@@ -21,7 +22,7 @@ class BottomNavig extends Component<BottomNavigProps> {
   }
   componentDidUpdate() {
     console.log(this.props.route);
-    
+
   }
 
   dispatchRoute(path: string) {
@@ -30,34 +31,36 @@ class BottomNavig extends Component<BottomNavigProps> {
 
   render() {
     return (
-      <BottomNavigation
-        style={{ width: '100%', position: 'fixed', bottom: 0 }}
-        value={this.props.route}
-        onChange={(event, newValue) => {
-          this.dispatchRoute(newValue)
-          //this.setState({ value: newValue });
-        }}
-        showLabels>
-        <BottomNavigationAction component={Link}
-          to="/"
-          onClick={()=>this.dispatchRoute("/")}
-          value="/" label="Accueil" icon={<HomeIcon />} />
-        <BottomNavigationAction component={Link}
-          to="/articles"
-          onClick={()=>this.dispatchRoute("/articles")}
-          value="/articles" label={<p style={{margin:0,padding:0,textAlign:'center'}}>Faire Mes Courses</p>} icon={<ShoppingCart />} />
-        <BottomNavigationAction component={Link}
-          to="/recipes"
-          onClick={()=>this.dispatchRoute("/recipes")}
-          value="/recipes" label="Recettes" icon={<MenuBook />} />
-      </BottomNavigation>
+      <Card>
+        <BottomNavigation
+          style={{ width: '100%', position: 'fixed', bottom: 0 }}
+          value={this.props.route}
+          onChange={(event, newValue) => {
+            this.dispatchRoute(newValue)
+            //this.setState({ value: newValue });
+          }}
+          showLabels>
+          <BottomNavigationAction component={Link}
+            to="/"
+            onClick={() => this.dispatchRoute("/")}
+            value="/" label="Accueil" icon={<HomeIcon />} />
+          <BottomNavigationAction component={Link}
+            to="/articles"
+            onClick={() => this.dispatchRoute("/articles")}
+            value="/articles" label={<p style={{ margin: 0, padding: 0, textAlign: 'center' }}>Faire Mes Courses</p>} icon={<ShoppingCart />} />
+          <BottomNavigationAction component={Link}
+            to="/recipes"
+            onClick={() => this.dispatchRoute("/recipes")}
+            value="/recipes" label="Recettes" icon={<MenuBook />} />
+        </BottomNavigation>
+      </Card>
     )
   }
 };
-const mapStateToProps = (state:any) => {
+const mapStateToProps = (state: any) => {
   return {
     route: state.data.route
   }
 }
 
-export default connect(mapStateToProps,{ updateRoute })(BottomNavig);
+export default connect(mapStateToProps, { updateRoute })(BottomNavig);
