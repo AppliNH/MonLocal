@@ -23,49 +23,6 @@ class Articles extends Component<ArticlesProps> {
 
     state = { stageNumber: this.props.stageNumber }
 
-    // stages: Array<Stall> = [{
-    //     name: "",
-    //     backgroundImage: "",
-    //     items: []
-    // },
-    // {
-    //     name: "Poissonier",
-    //     backgroundImage: FishMan,
-    //     items: [
-    //         {
-    //             name: "Saumon",
-    //             price: 2.30
-    //         },
-    //         {
-    //             name: "Colin",
-    //             price: 2.15
-    //         },
-    //         {
-    //             name: "Sol",
-    //             price: 2.15
-    //         },
-    //     ]
-    // },
-    // {
-    //     name: "Boucher",
-    //     backgroundImage: MeatMan,
-    //     items: [
-    //         {
-    //             name: "Poulet",
-    //             price: 4.30
-    //         },
-    //         {
-    //             name: "Colin",
-    //             price: 2.15
-    //         },
-    //         {
-    //             name: "Sol",
-    //             price: 2.15
-    //         },
-    //     ]
-    // }
-    // ];
-
     nextStage = () =>{
         console.log("ok");
         console.log(this.props.stageNumber)

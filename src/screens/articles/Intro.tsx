@@ -18,7 +18,7 @@ export default class Intro extends Component<IntroProps> {
 
     render() {
         return (
-            <div>
+            <div style={{marginBottom:"10vh"}}>
                 <div style={{ display: "flex", flexDirection: "column", alignContent: 'center' }}>
                     <div style={{ textAlign: 'center', }}>
                         <h1 style={{ margin: 0, marginTop: 10, marginBottom: 10, fontSize: "3.5vmax", color: "#FAFAFA" }}>Bienvenue dans votre magasin personnalisé !</h1>

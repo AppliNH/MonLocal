@@ -21,41 +21,48 @@ const initialState = {
     backgroundImage: FishMan,
     items: [
       {
+        id: 1,
         name: "Saumon",
         price: 2.30,
         image: Fish
       },
       {
+        id: 2,
         name: "Colin",
         price: 2.15,
         image: Fish
       },
       {
+        id: 3,
         name: "Sol",
         price: 25.15,
         image: Fish
       },
       {
+        id: 4,
         name: "Sol",
         price: 25.15,
         image: Fish
       },
       {
+        id: 5,
         name: "Sol",
         price: 25.15,
         image: Fish
       },
       {
+        id: 6,
         name: "Sol",
         price: 25.15,
         image: Fish
       },
       {
+        id: 7,
         name: "Sol",
         price: 25.15,
         image: Fish
       },
-      
+
     ]
   },
   {
@@ -64,16 +71,19 @@ const initialState = {
     backgroundImage: MeatMan,
     items: [
       {
+        id: 1,
         name: "Poulet",
         price: 4.30,
         image: Chicken
       },
       {
+        id: 2,
         name: "Boeuf",
         price: 2.15,
         image: Chicken
       },
       {
+        id: 3,
         name: "Porc",
         price: 2.5,
         image: Chicken
