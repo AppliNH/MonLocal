@@ -1,6 +1,7 @@
 import Stall_Item from "./Stall_Item";
 
 interface Stall {
+    id: number;
     name: string;
     color:string;
     backgroundImage: string;

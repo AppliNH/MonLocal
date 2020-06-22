@@ -10,12 +10,14 @@ import { UPDATE_ARTICLES_STAGE } from "../actionTypes";
 const initialState = {
   stageNumber: 0,
   stalls: [{
+    id:123,
     name: "",
     color: "",
     backgroundImage: "",
     items: []
   },
   {
+    id: 0,
     name: "Poissonier",
     color: "#3583be",
     backgroundImage: FishMan,
@@ -66,31 +68,32 @@ const initialState = {
     ]
   },
   {
+    id: 8,
     name: "Boucher",
     color: "red",
     backgroundImage: MeatMan,
     items: [
       {
-        id: 1,
+        id: 9,
         name: "Poulet",
         price: 4.30,
         image: Chicken
       },
       {
-        id: 2,
+        id: 10,
         name: "Boeuf",
         price: 2.15,
         image: Chicken
       },
       {
-        id: 3,
+        id: 11,
         name: "Porc",
         price: 2.5,
         image: Chicken
       },
     ]
   }
-  ]
+  ],
 };
 
 export default function (state = initialState, action) {
@@ -105,6 +108,8 @@ export default function (state = initialState, action) {
       }
       return nextState || state;
     }
+
+
 
     default:
       return state;

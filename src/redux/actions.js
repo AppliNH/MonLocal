@@ -1,4 +1,4 @@
-import { UPDATE_ROUTE, UPDATE_ARTICLES_STAGE } from "./actionTypes";
+import { UPDATE_ROUTE, UPDATE_ARTICLES_STAGE, UPDATE_BASKET_CONTENT } from "./actionTypes";
 
 export const updateRoute = content => ({
   type: UPDATE_ROUTE,
@@ -13,3 +13,13 @@ export const updateArticlesStage = content => ({
     stageNumber:content
   }
 });
+
+export const updateBasketContent = content => ({
+  type: UPDATE_BASKET_CONTENT,
+  payload: {
+    itemID:content.itemID,
+    quantity: content.quantity,
+    add: content.add
+  }
+});
+

@@ -5,6 +5,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from '@material-ui/icons/Home';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MenuBook from '@material-ui/icons/MenuBook';
+import LocalMall from '@material-ui/icons/LocalMall';
 import { Link } from 'react-router-dom';
 import { Component } from 'react'
 import { connect } from "react-redux";
@@ -47,7 +48,7 @@ class BottomNavig extends Component<BottomNavigProps> {
           <BottomNavigationAction component={Link}
             to="/articles"
             onClick={() => this.dispatchRoute("/articles")}
-            value="/articles" label={<p style={{ margin: 0, padding: 0, textAlign: 'center' }}>Échoppes</p>} icon={<ShoppingCart />} />
+            value="/articles" label={<p style={{ margin: 0, padding: 0, textAlign: 'center' }}>Échoppes</p>} icon={<LocalMall />} />
           <BottomNavigationAction component={Link}
             to="/recipes"
             onClick={() => this.dispatchRoute("/recipes")}
