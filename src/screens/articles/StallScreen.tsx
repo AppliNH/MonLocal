@@ -164,7 +164,6 @@ class StallScreen extends Component<StallProps> {
                         <div style={{ display: "flex", flexDirection: "row", alignItems: 'center', }}>
                             <ShoppingCart style={{ fontSize: "3vmax", marginRight: 10 }} />
                             <h2>Consulter mon panier</h2>
-                            <p>{this.props.basket}</p>
                         </div>
                     </Button>
                 </Grow>
