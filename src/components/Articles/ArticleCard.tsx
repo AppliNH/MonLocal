@@ -14,7 +14,7 @@ const ArticleCard: React.StatelessComponent<ArticleCardProps> = (props) => {
     //minHeight: "30%", maxHeight: "30%", minWidth: "25%", maxWidth: "25%" 
     return (
         <Card elevation={8} style={{ margin: 15, alignItems: "center" }}>
-            <div style={{ display: "flex", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-around" }}>
                 <img src={image} style={{ alignSelf: "center", width: "8vmax", height: "5vmax" }} />
                 <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
                     <div style={{ padding: 10, display: "flex", flexDirection: "column" }}>
@@ -25,8 +25,6 @@ const ArticleCard: React.StatelessComponent<ArticleCardProps> = (props) => {
                     <Button onClick={() => props.callback(id)} style={{ backgroundColor: props.fromBasket ? "red" : "#35b8be", color: "#FAFAFA", flex: 1, display: "flex" }}>
                         {!props.fromModal && !props.fromBasket ? "Voir" : (props.fromBasket ? "Supprimier" : "Ajouter au panier")}
                     </Button>
-
-                    
 
                 </div>
             </div>

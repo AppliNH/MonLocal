@@ -18,7 +18,7 @@ export default class Intro extends Component<IntroProps> {
 
     render() {
         return (
-            <div style={{marginBottom:"10vh"}}>
+            <div style={{ marginBottom: "10vh" }}>
                 <div style={{ display: "flex", flexDirection: "column", alignContent: 'center' }}>
                     <div style={{ textAlign: 'center', }}>
                         <h1 style={{ margin: 0, marginTop: 10, marginBottom: 10, fontSize: "3.5vmax", color: "#FAFAFA" }}>Bienvenue dans votre magasin personnalisé !</h1>
@@ -35,9 +35,14 @@ export default class Intro extends Component<IntroProps> {
                                 <div style={{ flex: 1 }}>
 
                                 </div>
-                                <Card elevation={8} style={{ flex: 1, display: "flex", flexDirection: 'column', alignItems: 'center' }}>
-                                    <img src={Chicken} style={{ height: "7vmax", width: "9vmax" }} />
-                                    <h3 style={{ color: 'red', textAlign: 'center' }}>Poulet</h3>
+                                <Card elevation={8} style={{ flex: 1, flexWrap: "wrap", display: "flex", justifyContent: "center" }}>
+                                    <div style={{ display: "flex", flexDirection: 'column', alignItems: 'center' }}>
+                                        <img src={Chicken} style={{ height: "7vmax", width: "9vmax" }} />
+                                        <h3 style={{ color: 'red', textAlign: 'center' }}>Poulet</h3>
+                                    </div>
+                                    <Button style={{ backgroundColor: "#35b8be", color: "#FAFAFA" }}>
+                                        Voir
+                                    </Button>
                                 </Card>
 
 
@@ -46,7 +51,7 @@ export default class Intro extends Component<IntroProps> {
                                 </div>
                             </div>
                             <div style={{ textAlign: 'center' }}>
-                                <h3>Pour ajouter un article à votre panier ou voir les détails, positionnez votre souris sur l'article et cliquez avec le clic gauche</h3>
+                                <h3>Pour ajouter un article à votre panier ou voir les détails, positionnez votre souris sur l'article et cliquez avec le clic gauche sur le bouton "Voir"</h3>
                             </div>
                         </Card>
 
@@ -57,9 +62,14 @@ export default class Intro extends Component<IntroProps> {
 
                                 </div>
 
-                                <Card elevation={8} style={{ flex: 1, display: "flex", flexDirection: 'column', alignItems: 'center' }}>
-                                    <img src={Chicken} style={{ height: "7vmax", width: "9vmax" }} />
-                                    <h3 style={{ color: 'red', textAlign: 'center' }}>Poulet</h3>
+                                <Card elevation={8} style={{ flex: 1, flexWrap: "wrap", display: "flex", justifyContent: "center" }}>
+                                    <div style={{ display: "flex", flexDirection: 'column', alignItems: 'center' }}>
+                                        <img src={Chicken} style={{ height: "7vmax", width: "9vmax" }} />
+                                        <h3 style={{ color: 'red', textAlign: 'center' }}>Poulet</h3>
+                                    </div>
+                                    <Button style={{ backgroundColor: "#35b8be", color: "#FAFAFA" }}>
+                                        Voir
+                                    </Button>
                                 </Card>
 
                                 <div style={{ flex: 1, alignSelf: 'flex-end', padding: 10 }}>
@@ -67,7 +77,7 @@ export default class Intro extends Component<IntroProps> {
                                 </div>
                             </div>
                             <div style={{ textAlign: 'center', }}>
-                                <h3>Si vous êtes sur mobile ou tablette, vous avez juste à toucher l'article que vous désirez !</h3>
+                                <h3>Si vous êtes sur mobile ou tablette, vous avez juste à toucher le bouton "Voir" de l'article que vous désirez !</h3>
                             </div>
                         </Card>
 

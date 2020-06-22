@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Stall from "../../_models/StallModel";
 import { updateArticlesStage, updateRoute, updateBasketContent } from "../../redux/actions"
 import { connect } from 'react-redux';
-import { Card, Button, Fade, Grow, Modal } from '@material-ui/core';
+import { Card, Button, Fade, Grow, Modal, Snackbar } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import Close from '@material-ui/icons/Close';
@@ -34,13 +35,17 @@ const transitionStyles = {
     exited: 1
 };
 
+function Alert(props: any) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 class StallScreen extends Component<StallProps> {
 
     constructor(props: StallProps) {
         super(props);
     }
 
-    state = { modalType: "", selectedProductId: 0, showModal: false, stall: this.props.stalls[this.props.stageNumber], previousStall: this.props.stalls[this.props.stageNumber - 1], nextStall: this.props.stalls[this.props.stageNumber + 1] }
+    state = { snackType: "info", snackOpen: false, snackMessage: "", modalType: "", selectedProductId: 0, showModal: false, stall: this.props.stalls[this.props.stageNumber], previousStall: this.props.stalls[this.props.stageNumber - 1], nextStall: this.props.stalls[this.props.stageNumber + 1] }
 
     updateButtonAndScreens(newStage: number) {
         console.log(this.props.stalls[newStage + 1],)
@@ -72,23 +77,29 @@ class StallScreen extends Component<StallProps> {
         const ArticleDetails = <div style={{ outline: "none" }}>
 
             {this.state.stall.items.find(elem => elem.id == this.state.selectedProductId) != undefined ?
-                <ArticleCard fromModal={true} callback={() => { this.setState({ showModal: false }); this.props.updateBasketContent({ itemID: this.state.selectedProductId, quantity: 1, add: true }) }} item={this.state.stall.items.find(elem => elem.id == this.state.selectedProductId)} />
+                <ArticleCard fromModal={true} callback={() => { this.setState({ showModal: false, snackType: "info", snackMessage: "Article ajouté au panier !", snackOpen: true }); this.props.updateBasketContent({ itemID: this.state.selectedProductId, quantity: 1, add: true }) }} item={this.state.stall.items.find(elem => elem.id == this.state.selectedProductId)} />
                 :
                 <h4>Une erreur s'est produite</h4>}
         </div>;
 
-        const BasketDetails = <div style={{ maxHeight: "70vh", maxWidth: "70vw" }}>
+        const BasketDetails = <div style={{ maxHeight: "70vh", maxWidth: "70vw", padding: 10 }}>
             <div>
                 <h1>Votre panier: </h1>
-                <div style={{ display: "flex", flexWrap: "wrap", height: "60vh", overflow: "auto" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", maxHeight: "60vh", overflow: "auto" }}>
                     {getBasketContent(this.props.reduxState, this.state.stall.id).length > 0 ?
-                        getBasketContent(this.props.reduxState, this.state.stall.id).map((elem: any) => <ArticleCard callback={(productID: any) => { this.setState({ showModal: false }); this.props.updateBasketContent({ itemID: productID, quantity: 1, add: false }) }} fromModal={false} fromBasket={true} item={elem} />)
+                        getBasketContent(this.props.reduxState, this.state.stall.id).map((elem: any) => <ArticleCard callback={(productID: any) => { this.setState({ snackType: "error", snackMessage: "Article supprimé du panier !", snackOpen: true }); this.props.updateBasketContent({ itemID: productID, quantity: 1, add: false }) }} fromModal={false} fromBasket={true} item={elem} />)
                         :
                         <h3>Votre panier est vide </h3>
                     }
                 </div>
             </div>
         </div>;
+
+        const SnackBarMessage = <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={this.state.snackOpen} onClose={() => this.setState({ snackOpen: false })} autoHideDuration={2000} >
+            <Alert onClose={() => this.setState({ snackOpen: false })} severity={this.state.snackType}>
+                <h2>{this.state.snackMessage}</h2>
+            </Alert>
+        </Snackbar>
 
         const DetailsModal = <Modal
             open={this.state.showModal}
@@ -153,11 +164,13 @@ class StallScreen extends Component<StallProps> {
                         <div style={{ display: "flex", flexDirection: "row", alignItems: 'center', }}>
                             <ShoppingCart style={{ fontSize: "3vmax", marginRight: 10 }} />
                             <h2>Consulter mon panier</h2>
+                            <p>{this.props.basket}</p>
                         </div>
                     </Button>
                 </Grow>
 
                 {DetailsModal}
+                {SnackBarMessage}
 
             </div>
         );
@@ -175,6 +188,12 @@ const mapStateToProps = (state: any) => {
     }
 }
 export default connect(mapStateToProps, { updateArticlesStage, updateRoute, updateBasketContent })(StallScreen);
+
+function DisplaySnackBar(message: string, openSnack: Boolean) {
+    return
+
+}
+
 
 function ArticlesGrid(articles: JSX.Element[]) {
     return <Fade timeout={3500} in={true}>
