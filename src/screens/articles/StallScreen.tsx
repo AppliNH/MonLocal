@@ -16,6 +16,7 @@ import { CSSTransition, TransitionGroup, Transition } from 'react-transition-gro
 import { getBasketContent } from '../../redux/selectors';
 import Stall_Item from '../../_models/Stall_Item';
 import ArticlePreview from "../../components/Articles/ArticlePreview";
+import BasketArticle from '../../components/Articles/BasketArticle';
 
 interface StallProps {
     stageNumber: number;
@@ -77,17 +78,19 @@ class StallScreen extends Component<StallProps> {
         const ArticleDetails = <div style={{ outline: "none" }}>
 
             {this.state.stall.items.find(elem => elem.id == this.state.selectedProductId) != undefined ?
-                <ArticlePreview callback={() => { this.setState({ showModal: false }); this.props.updateBasketContent({ itemID: this.state.selectedProductId, quantity: 1, add: true }) }} item={this.state.stall.items.find(elem => elem.id == this.state.selectedProductId)} />
+                <ArticlePreview callback={(q: number) => { this.setState({ showModal: false, snackOpen: true, snackMessage: "Article ajouté dans votre panier !", snackType: "info" }); this.props.updateBasketContent({ itemID: this.state.selectedProductId, quantity: q, add: true }) }} item={this.state.stall.items.find(elem => elem.id == this.state.selectedProductId)} />
                 :
                 <h4>Une erreur s'est produite</h4>}
         </div>;
-
-        const BasketDetails = <div style={{ maxHeight: "70vh", maxWidth: "70vw", padding: 10 }}>
+        // maxHeight: "70vh", maxWidth: "70vw",
+        const BasketDetails = <div style={{ padding: 5 }}>
             <div>
                 <h1>Votre panier: </h1>
-                <div style={{ display: "flex", flexWrap: "wrap", maxHeight: "60vh", overflow: "auto" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", maxHeight: "60vh", overflow: "auto", padding:10 }}>
                     {getBasketContent(this.props.reduxState, this.state.stall.id).length > 0 ?
-                        getBasketContent(this.props.reduxState, this.state.stall.id).map((elem: any) => <ArticleCard callback={(productID: any) => { this.setState({ snackType: "error", snackMessage: "Article supprimé du panier !", snackOpen: true }); this.props.updateBasketContent({ itemID: productID, quantity: 1, add: false }) }} fromModal={false} fromBasket={true} item={elem} />)
+                        getBasketContent(this.props.reduxState, this.state.stall.id).map((elem: any) => 
+                            //<ArticleCard callback={(productID: any) => { this.setState({ snackType: "error", snackMessage: "Article supprimé du panier !", snackOpen: true }); this.props.updateBasketContent({ itemID: productID, quantity: 1, add: false }) }} fromModal={false} fromBasket={true} item={elem} />)
+                            <BasketArticle item={elem}/>)
                         :
                         <h3>Votre panier est vide </h3>
                     }
@@ -103,9 +106,9 @@ class StallScreen extends Component<StallProps> {
 
         const DetailsModal = <Modal
             open={this.state.showModal}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',  }}
             onClose={() => this.setState({ showModal: false })}>
-            <Card style={{ padding: 20, outline: "none" }}>
+            <Card style={{ padding: 10, outline: "none", width:"80%" }}>
                 <div style={{ cursor: 'pointer' }} onClick={() => this.setState({ showModal: false })}>
                     <Close />
                 </div>

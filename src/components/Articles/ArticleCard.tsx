@@ -13,20 +13,20 @@ const ArticleCard: React.StatelessComponent<ArticleCardProps> = (props) => {
     const { name, image, price, id } = props.item;
     //minHeight: "30%", maxHeight: "30%", minWidth: "25%", maxWidth: "25%" 
     return (
-        <Card elevation={8} style={{ margin: 15, alignItems: "center" }}>
-            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-around" }}>
+        <Card elevation={8} style={{ margin: 15, alignItems: "center", width: "35vmax" }}>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                 <img src={image} style={{ alignSelf: "center", width: "8vmax", height: "5vmax" }} />
-                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
-                    <div style={{ padding: 10, display: "flex", flexDirection: "column" }}>
-                        <h2>{name}</h2>
-                        <h1 style={{ fontSize: "3vmax" }}>{price}€</h1>
-                    </div>
 
-                    <Button variant="contained" onClick={() => props.callback(id)} style={{ backgroundColor: props.fromBasket ? "red" : "#35b8be", color: "#FAFAFA", flex: 1, display: "flex" }}>
-                        {!props.fromModal && !props.fromBasket ? "Voir" : (props.fromBasket ? "Supprimier" : "Ajouter au panier")}
-                    </Button>
-
+                <div style={{ padding: 10, display: "flex", flexDirection: "column" }}>
+                    <h2>{name}</h2>
+                    <h1 style={{ fontSize: "3vmax" }}>{price}€</h1>
                 </div>
+
+                <Button variant="contained" onClick={() => props.callback(id)} style={{ backgroundColor: props.fromBasket ? "red" : "#35b8be", color: "#FAFAFA" }}>
+                    {!props.fromModal && !props.fromBasket ? "Voir" : (props.fromBasket ? "Supprimier" : "Ajouter au panier")}
+                </Button>
+
+
             </div>
         </Card>
     );
