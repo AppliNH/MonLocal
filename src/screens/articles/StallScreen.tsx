@@ -83,14 +83,14 @@ class StallScreen extends Component<StallProps> {
                 <h4>Une erreur s'est produite</h4>}
         </div>;
         // maxHeight: "70vh", maxWidth: "70vw",
-        const BasketDetails = <div style={{ padding: 5 }}>
+        const BasketDetails = <div style={{ paddingLeft: 10, paddingRight:10, paddingBottom:10 }}>
             <div>
                 <h1>Votre panier: </h1>
-                <div style={{ display: "flex", flexWrap: "wrap", maxHeight: "60vh", overflow: "auto", padding:10 }}>
+                <div style={{ display: "flex", flexWrap: "wrap", maxHeight: "60vh", overflow: "auto", padding: 10 }}>
                     {getBasketContent(this.props.reduxState, this.state.stall.id).length > 0 ?
-                        getBasketContent(this.props.reduxState, this.state.stall.id).map((elem: any) => 
+                        getBasketContent(this.props.reduxState, this.state.stall.id).map((elem: any) =>
                             //<ArticleCard callback={(productID: any) => { this.setState({ snackType: "error", snackMessage: "Article supprimé du panier !", snackOpen: true }); this.props.updateBasketContent({ itemID: productID, quantity: 1, add: false }) }} fromModal={false} fromBasket={true} item={elem} />)
-                            <BasketArticle item={elem}/>)
+                            <BasketArticle callback={(productID: any, q: number) => { this.setState({ snackType: "error", snackMessage: "Quantité supprimée du panier !", snackOpen: true }); this.props.updateBasketContent({ itemID: productID, quantity: q, add: false }) }} item={elem} />)
                         :
                         <h3>Votre panier est vide </h3>
                     }
@@ -106,9 +106,9 @@ class StallScreen extends Component<StallProps> {
 
         const DetailsModal = <Modal
             open={this.state.showModal}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',  }}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', }}
             onClose={() => this.setState({ showModal: false })}>
-            <Card style={{ padding: 10, outline: "none", width:"80%" }}>
+            <Card style={{ padding: 10, outline: "none", width: this.state.modalType == "articles" ? "" : "80%" }}>
                 <div style={{ cursor: 'pointer' }} onClick={() => this.setState({ showModal: false })}>
                     <Close />
                 </div>

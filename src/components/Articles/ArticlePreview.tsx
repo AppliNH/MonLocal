@@ -16,7 +16,7 @@ class ArticlePreview extends Component<ArticlePreviewProps> {
 
 
     validateInput() {
-        let n = parseInt(this.state.userQuantity.toString())
+        let n = parseFloat(this.state.userQuantity.toString())
         console.log(typeof n)
         console.log(n)
         if (n == undefined || n <= 0 || typeof n != "number" || isNaN(n)) {
@@ -24,8 +24,8 @@ class ArticlePreview extends Component<ArticlePreviewProps> {
         } else {
             this.props.callback(n)
         }
-
     }
+    
     componentDidUpdate() {
         console.log(this.state.userQuantity)
     }
