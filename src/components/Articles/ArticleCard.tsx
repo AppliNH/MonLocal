@@ -22,7 +22,7 @@ const ArticleCard: React.StatelessComponent<ArticleCardProps> = (props) => {
                         <h1 style={{ fontSize: "3vmax" }}>{price}€</h1>
                     </div>
 
-                    <Button onClick={() => props.callback(id)} style={{ backgroundColor: props.fromBasket ? "red" : "#35b8be", color: "#FAFAFA", flex: 1, display: "flex" }}>
+                    <Button variant="contained" onClick={() => props.callback(id)} style={{ backgroundColor: props.fromBasket ? "red" : "#35b8be", color: "#FAFAFA", flex: 1, display: "flex" }}>
                         {!props.fromModal && !props.fromBasket ? "Voir" : (props.fromBasket ? "Supprimier" : "Ajouter au panier")}
                     </Button>
 

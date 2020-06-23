@@ -77,7 +77,7 @@ class StallScreen extends Component<StallProps> {
         const ArticleDetails = <div style={{ outline: "none" }}>
 
             {this.state.stall.items.find(elem => elem.id == this.state.selectedProductId) != undefined ?
-                <ArticleCard fromModal={true} callback={() => { this.setState({ showModal: false, snackType: "info", snackMessage: "Article ajouté au panier !", snackOpen: true }); this.props.updateBasketContent({ itemID: this.state.selectedProductId, quantity: 1, add: true }) }} item={this.state.stall.items.find(elem => elem.id == this.state.selectedProductId)} />
+                <ArticlePreview callback={() => { this.setState({ showModal: false }); this.props.updateBasketContent({ itemID: this.state.selectedProductId, quantity: 1, add: true }) }} item={this.state.stall.items.find(elem => elem.id == this.state.selectedProductId)} />
                 :
                 <h4>Une erreur s'est produite</h4>}
         </div>;
