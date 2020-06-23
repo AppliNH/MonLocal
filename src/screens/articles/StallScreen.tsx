@@ -18,6 +18,7 @@ import Stall_Item from '../../_models/Stall_Item';
 import ArticlePreview from "../../components/Articles/ArticlePreview";
 import BasketArticle from '../../components/Articles/BasketArticle';
 
+
 interface StallProps {
     stageNumber: number;
     stalls: Array<Stall>;
@@ -127,32 +128,32 @@ class StallScreen extends Component<StallProps> {
 
                             {this.state.previousStall.name !== "" ?
                                 <div onClick={() => this.previousStage()} style={{ flex: 1, cursor: "pointer", padding: 10, backgroundColor: "#FAFAFA", display: 'flex', flexDirection: "column", alignItems: "center" }}>
-                                    <h3 style={{ margin: 0, fontSize: "1rem", color: this.state.previousStall.color, textAlign: "center" }}>Revenir chez votre {this.state.previousStall.name}</h3>
+                                    <h3 style={{ margin: 0, fontSize: "1.2rem", color: this.state.previousStall.color, textAlign: "center" }}>Revenir chez votre {this.state.previousStall.name}</h3>
                                     <ArrowBack style={{ color: this.state.previousStall.color, alignSelf: 'center' }} />
                                 </div>
                                 :
                                 <Link to="/" style={{ textDecoration: "none", flex: 1, display: "flex", padding: 10 }} onClick={() => this.props.updateRoute("/")}>
                                     <div style={{ padding: 10, backgroundColor: "#FAFAFA", display: 'flex', flex: 1, flexDirection: "column", alignItems: 'center' }}>
-                                        <h3 style={{ margin: 0, fontSize: "1rem", color: "#35b8be", textAlign: "center" }}>Revenir à l'accueil</h3>
-                                        <Home style={{ color: "#35b8be", alignSelf: 'center' }} />
+                                        <h3 style={{ margin: 0, fontSize: "1.2rem", color: "#35b8be", textAlign: "center" }}>Quitter votre marché</h3>
+                                        <Close style={{ color: "#35b8be", alignSelf: 'center' }} />
                                     </div>
                                 </Link>
                             }
 
 
                             <div style={{ padding: 20, flex: 1, backgroundColor: this.state.stall.color }}>
-                                <h2 style={{ margin: 0, fontSize: "1.2em", color: "#FAFAFA", textAlign: "center" }}>Vous êtes chez votre {this.state.stall.name}</h2>
+                                <h2 style={{ margin: 0, fontSize: "1.2rem", color: "#FAFAFA", textAlign: "center" }}>Vous êtes chez votre {this.state.stall.name}</h2>
                             </div>
 
                             {this.state.nextStall ?
 
                                 <div onClick={() => this.nextStage()} style={{ flex: 1, cursor: "pointer", padding: 20, backgroundColor: "#FAFAFA", display: 'flex', alignItems: "center", flexDirection: "column" }}>
-                                    <h3 style={{ margin: 0, fontSize: "1rem", textAlign: "center", color: this.state.nextStall.color }}>Aller chez votre {this.state.nextStall.name}</h3>
+                                    <h3 style={{ margin: 0, fontSize: "1.2rem", textAlign: "center", color: this.state.nextStall.color }}>Aller chez votre {this.state.nextStall.name}</h3>
                                     <ArrowForward style={{ color: this.state.nextStall.color, alignSelf: 'center' }} />
                                 </div>
                                 :
                                 <div style={{ padding: 10, flex: 1, backgroundColor: "#35b8be", display: 'flex', flexDirection: "column", alignItems: "center" }}>
-                                    <h3 style={{ margin: 0, fontSize: "1rem", color: "#FAFAFA", textAlign: "center" }}>Payer</h3>
+                                    <h3 style={{ margin: 0, fontSize: "1.2rem", color: "#FAFAFA", textAlign: "center" }}>Payer</h3>
                                     <CreditCard style={{ color: "#FAFAFA", alignSelf: 'center' }} />
                                 </div>
                             }
