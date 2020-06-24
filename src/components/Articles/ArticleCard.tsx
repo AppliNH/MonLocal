@@ -12,19 +12,24 @@ interface ArticleCardProps {
 const ArticleCard: React.StatelessComponent<ArticleCardProps> = (props) => {
     const { name, image, price, id } = props.item;
     //minHeight: "30%", maxHeight: "30%", minWidth: "25%", maxWidth: "25%" 
+    const nameSize = (18 / name.length) > 2 ? "2vmax" : (18 / name.length) + "vmax";
+    //width: "25vmax", maxWidth: "25vmax", height: "12vmax" 
     return (
-        <Card elevation={8} style={{ margin: 15, alignItems: "center", width: "35vmax" }}>
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                <img src={image} style={{ alignSelf: "center", width: "8vmax", height: "5vmax" }} />
+        <Card elevation={8} style={{ margin: 15, alignItems: "center" }}>
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+                    <img src={image} style={{ alignSelf: "center", width: "7vmax", height: "4vmax" }} />
 
-                <div style={{ padding: 10, display: "flex", flexDirection: "column" }}>
-                    <h2>{name}</h2>
-                    <h1 style={{ fontSize: "3vmax" }}>{price}€</h1>
+                    <div style={{ padding: 10, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                        <h2 style={{ fontSize: '5vw' }}>{name}</h2>
+                        <h1>{price}€</h1>
+                    </div>
                 </div>
 
                 <Button variant="contained" onClick={() => props.callback(id)} style={{ backgroundColor: props.fromBasket ? "red" : "#35b8be", color: "#FAFAFA" }}>
-                    {!props.fromModal && !props.fromBasket ? "Voir" : (props.fromBasket ? "Supprimier" : "Ajouter au panier")}
+                    <h1 style={{ fontSize: "2vmax" }}>Voir</h1>
                 </Button>
+
 
 
             </div>

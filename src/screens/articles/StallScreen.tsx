@@ -8,6 +8,7 @@ import ArrowForward from '@material-ui/icons/ArrowForward';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import Close from '@material-ui/icons/Close';
 import Home from '@material-ui/icons/Home'
+import Check from '@material-ui/icons/Check'
 import CreditCard from '@material-ui/icons/CreditCard';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
@@ -47,7 +48,7 @@ class StallScreen extends Component<StallProps> {
         super(props);
     }
 
-    state = { snackType: "info", snackOpen: false, snackMessage: "", modalType: "", selectedProductId: 0, showModal: false, stall: this.props.stalls[this.props.stageNumber], previousStall: this.props.stalls[this.props.stageNumber - 1], nextStall: this.props.stalls[this.props.stageNumber + 1] }
+    state = { snackType: "info", selectedCategoryId: "", snackOpen: false, snackMessage: "", modalType: "", selectedProductId: 0, showModal: false, stall: this.props.stalls[this.props.stageNumber], previousStall: this.props.stalls[this.props.stageNumber - 1], nextStall: this.props.stalls[this.props.stageNumber + 1] }
 
     updateButtonAndScreens(newStage: number) {
         console.log(this.props.stalls[newStage + 1],)
@@ -56,6 +57,10 @@ class StallScreen extends Component<StallProps> {
             previousStall: this.props.stalls[newStage - 1],
             nextStall: this.props.stalls[newStage + 1]
         })
+    }
+
+    componentDidMount() {
+        this.setState({ selectedCategoryId: this.state.stall.categories[0].id })
     }
 
     nextStage() {
@@ -71,7 +76,7 @@ class StallScreen extends Component<StallProps> {
 
     render() {
 
-        const articles = (this.state.stall.items).map(
+        const articles = (this.state.stall.items).filter(e => e.categoryID == this.state.selectedCategoryId).map(
             item => <ArticleCard fromModal={false} callback={(id: number) => this.setState({ showModal: true, selectedProductId: id, modalType: "articles" })} item={item} />
         );
 
@@ -84,7 +89,7 @@ class StallScreen extends Component<StallProps> {
                 <h4>Une erreur s'est produite</h4>}
         </div>;
         // maxHeight: "70vh", maxWidth: "70vw",
-        const BasketDetails = <div style={{ paddingLeft: 10, paddingRight:10, paddingBottom:10 }}>
+        const BasketDetails = <div style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 10 }}>
             <div>
                 <h1>Votre panier: </h1>
                 <div style={{ display: "flex", flexWrap: "wrap", maxHeight: "60vh", overflow: "auto", padding: 10 }}>
@@ -122,7 +127,7 @@ class StallScreen extends Component<StallProps> {
 
         return (
             <div style={{ display: "flex", flexDirection: "column", background: "no-repeat center center fixed", backgroundImage: `url(${this.state.stall.backgroundImage})`, backgroundSize: "cover", height: "92vh", overflow: "hidden" }}>
-                <Grow style={{ transformOrigin: '10 10 10' }} in={true} timeout={3000}>
+                <Grow style={{ transformOrigin: '10 10 10', flex: 1 }} in={true} timeout={3000}>
                     <div style={{ flex: 1 }}>
                         <Card elevation={8} style={{ borderRadius: 50, display: 'flex', flexDirection: 'row', marginTop: 30, marginLeft: 15, marginRight: 15 }}>
 
@@ -160,17 +165,39 @@ class StallScreen extends Component<StallProps> {
                         </Card>
                     </div>
                 </Grow>
-                {ArticlesGrid(articles)}
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", flex: 4, marginTop: 20, paddingLeft: 10, paddingRight: 10, }}>
+                    <div style={{ display: "flex", flexWrap: "wrap-reverse", flex: 1, justifyContent: "space-around", alignItems: "center" }}>
+
+                        <Grow in={true} style={{}} timeout={3000}>
+                            <Button onClick={() => this.setState({ showModal: true, modalType: "basket" })} style={{ backgroundColor: "#35b8be", color: "#FAFAFA", padding: 5 }}>
+                                <div style={{ display: "flex", flexDirection: "row", alignItems: 'center', }}>
+                                    <ShoppingCart style={{ fontSize: "2vmax", marginRight: 10 }} />
+                                    <h2 style={{ fontSize: "2vmax", }}>Consulter mon panier</h2>
+                                </div>
+                            </Button>
+                        </Grow>
+
+                        <Card style={{ backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 15, display: "flex", padding: 20, alignItems: "center", flexDirection: "column", alignSelf: "flex-start", margin: 10 }}>
+                            <h1 style={{ fontSize: "2vmax", color: "#FAFAFA" }}>Catégories</h1>
+                            <div style={{ flexWrap: "wrap", display: "flex" }}>
+                                {
+                                    this.state.stall.categories.map(cat => <Button onClick={() => this.setState({ selectedCategoryId: cat.id })} style={{ backgroundColor: "#35b8be", color: "#FAFAFA", padding: 10, display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                                        {cat.name}
+                                        {this.state.selectedCategoryId == cat.id ? <Check /> : null}
+                                    </Button>)
+                                }
+                            </div>
+
+                        </Card>
 
 
-                <Grow in={true} timeout={3000}>
-                    <Button onClick={() => this.setState({ showModal: true, modalType: "basket" })} style={{ backgroundColor: "#35b8be", color: "#FAFAFA", padding: 5, marginLeft: "25vw", marginRight: "25vw" }}>
-                        <div style={{ display: "flex", flexDirection: "row", alignItems: 'center', }}>
-                            <ShoppingCart style={{ fontSize: "3vmax", marginRight: 10 }} />
-                            <h2>Consulter mon panier</h2>
-                        </div>
-                    </Button>
-                </Grow>
+                    </div>
+                    {ArticlesGrid(articles)}
+
+                </div>
+
+
+
 
                 {DetailsModal}
                 {SnackBarMessage}
@@ -192,16 +219,18 @@ const mapStateToProps = (state: any) => {
 }
 export default connect(mapStateToProps, { updateArticlesStage, updateRoute, updateBasketContent })(StallScreen);
 
-function DisplaySnackBar(message: string, openSnack: Boolean) {
-    return
 
-}
 
 
 function ArticlesGrid(articles: JSX.Element[]) {
-    return <Fade timeout={3500} in={true}>
-        <Card elevation={8} style={{ alignItems: "center", backgroundColor: "rgba(0,0,0,0.3)", marginTop: 10, borderRadius: 15, flex: 4, display: "flex", flexWrap: 'wrap', marginLeft: 15, marginRight: 15, overflow: "auto", }}>
-            {articles}
+    return <Fade style={{ flex: 4 }} timeout={3500} in={true}>
+        <Card elevation={8} style={{
+            maxHeight: "63vh",
+            alignItems: "center",  backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 15, display: "flex", flexWrap: 'wrap', overflow: "auto"
+        }}>
+
+            {articles} 
+
         </Card>
     </Fade>;
 }
