@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MenuBook from '@material-ui/icons/MenuBook';
 import { Link } from 'react-router-dom';
@@ -13,9 +13,7 @@ interface MainProps {
 }
 class Main extends Component<MainProps> {
 
-  constructor(props: MainProps) {
-    super(props);
-  }
+ 
   state = { width: 0, height: 0 };
 
   _updateRoute(path: string) {

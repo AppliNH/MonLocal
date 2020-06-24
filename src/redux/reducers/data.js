@@ -22,13 +22,14 @@ export default function (state = initialState, action) {
       const { itemID, quantity, add } = action.payload;
 
       var localBasket = initialState.basket;
-      let item = localBasket.find(elem => elem.id == itemID);
+      let item = localBasket.find(elem => elem.id === itemID);
 
       if (item) {
         localBasket.map(elem => {
-          if (elem && elem.id == itemID) {
+          if (elem && elem.id === itemID) {
             add ? elem.quantity += quantity : elem.quantity -= quantity;
           }
+          return null;
         });
       } else {
         localBasket.push({ id: itemID, quantity: quantity })

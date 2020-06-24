@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import FishMan from "../../assets/fishman.png"
 import Chicken from "../../assets/chicken.png"
 import MouseCursor from "../../assets/mousecursor.png"
 import Finger from "../../assets/finger.png"
@@ -12,10 +11,7 @@ interface IntroProps {
 
 export default class Intro extends Component<IntroProps> {
 
-    constructor(props: IntroProps) {
-        super(props);
-    }
-
+    
     render() {
         return (
             <div style={{ marginBottom: "10vh" }}>
@@ -37,7 +33,7 @@ export default class Intro extends Component<IntroProps> {
                                 </div>
                                 <Card elevation={8} style={{ flex: 1, flexWrap: "wrap", display: "flex", justifyContent: "center" }}>
                                     <div style={{ display: "flex", flexDirection: 'column', alignItems: 'center' }}>
-                                        <img src={Chicken} style={{ height: "7vmax", width: "9vmax" }} />
+                                        <img alt="poulet" src={Chicken} style={{ height: "7vmax", width: "9vmax" }} />
                                         <h3 style={{ color: 'red', textAlign: 'center' }}>Poulet</h3>
                                     </div>
                                     <Button style={{ backgroundColor: "#35b8be", color: "#FAFAFA" }}>
@@ -47,7 +43,7 @@ export default class Intro extends Component<IntroProps> {
 
 
                                 <div style={{ flex: 1, alignSelf: "flex-end", padding: 10 }}>
-                                    <img src={MouseCursor} style={{ height: "5vmax", width: "5vmax" }} />
+                                    <img alt="pointeur" src={MouseCursor} style={{ height: "5vmax", width: "5vmax" }} />
                                 </div>
                             </div>
                             <div style={{ textAlign: 'center' }}>
@@ -64,7 +60,7 @@ export default class Intro extends Component<IntroProps> {
 
                                 <Card elevation={8} style={{ flex: 1, flexWrap: "wrap", display: "flex", justifyContent: "center" }}>
                                     <div style={{ display: "flex", flexDirection: 'column', alignItems: 'center' }}>
-                                        <img src={Chicken} style={{ height: "7vmax", width: "9vmax" }} />
+                                        <img alt="poulet" src={Chicken} style={{ height: "7vmax", width: "9vmax" }} />
                                         <h3 style={{ color: 'red', textAlign: 'center' }}>Poulet</h3>
                                     </div>
                                     <Button style={{ backgroundColor: "#35b8be", color: "#FAFAFA" }}>
@@ -73,7 +69,7 @@ export default class Intro extends Component<IntroProps> {
                                 </Card>
 
                                 <div style={{ flex: 1, alignSelf: 'flex-end', padding: 10 }}>
-                                    <img src={Finger} style={{ transform: "rotate(-45deg)", height: "6vmax", width: "3vmax" }} />
+                                    <img alt="doigt" src={Finger} style={{ transform: "rotate(-45deg)", height: "6vmax", width: "3vmax" }} />
                                 </div>
                             </div>
                             <div style={{ textAlign: 'center', }}>

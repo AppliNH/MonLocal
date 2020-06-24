@@ -1,13 +1,5 @@
 import React, { Component } from 'react'
-import FishMan from "../assets/fishman.png"
-import MeatMan from "../assets/meatman.png"
-import Chicken from "../assets/chicken.png"
-import MouseCursor from "../assets/mousecursor.png"
-import Finger from "../assets/finger.png"
-import { Card, Button, } from '@material-ui/core'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Intro from './articles/Intro'
-import NotFound from './NotFound'
 import { connect } from 'react-redux'
 import { updateArticlesStage } from "../redux/actions"
 import StallScreen from './articles/StallScreen'
@@ -38,7 +30,7 @@ class Articles extends Component<ArticlesProps> {
         return (
             <div className="App">
                 {
-                    this.props.stageNumber == 0
+                    this.props.stageNumber === 0
                         ?
                         <Intro nextStage={this.nextStage}/>
                         :

@@ -7,15 +7,13 @@ import MuiAlert from '@material-ui/lab/Alert';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import Close from '@material-ui/icons/Close';
-import Home from '@material-ui/icons/Home'
+
 import Check from '@material-ui/icons/Check'
 import CreditCard from '@material-ui/icons/CreditCard';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import ArticleCard from '../../components/Articles/ArticleCard';
-import { CSSTransition, TransitionGroup, Transition } from 'react-transition-group';
 import { getBasketContent } from '../../redux/selectors';
-import Stall_Item from '../../_models/Stall_Item';
 import ArticlePreview from "../../components/Articles/ArticlePreview";
 import BasketArticle from '../../components/Articles/BasketArticle';
 
@@ -31,13 +29,6 @@ interface StallProps {
     reduxState: any;
 }
 
-const transitionStyles = {
-    unmounted: 1,
-    entering: 0.5,
-    entered: 0.75,
-    exiting: 1,
-    exited: 1
-};
 
 function Alert(props: any) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -45,9 +36,6 @@ function Alert(props: any) {
 
 class StallScreen extends Component<StallProps> {
 
-    constructor(props: StallProps) {
-        super(props);
-    }
 
     state = { snackType: "info", selectedCategoryId: "", snackOpen: false, snackMessage: "", modalType: "", selectedProductId: 0, showModal: false, stall: this.props.stalls[this.props.stageNumber], previousStall: this.props.stalls[this.props.stageNumber - 1], nextStall: this.props.stalls[this.props.stageNumber + 1] }
 
@@ -77,15 +65,15 @@ class StallScreen extends Component<StallProps> {
 
     render() {
 
-        const articles = (this.state.stall.items).filter(e => e.categoryID == this.state.selectedCategoryId).map(
+        const articles = (this.state.stall.items).filter(e => e.categoryID === this.state.selectedCategoryId).map(
             item => <ArticleCard fromModal={false} callback={(id: number) => this.setState({ showModal: true, selectedProductId: id, modalType: "articles" })} item={item} />
         );
 
 
         const ArticleDetails = <div style={{ outline: "none" }}>
 
-            {this.state.stall.items.find(elem => elem.id == this.state.selectedProductId) != undefined ?
-                <ArticlePreview callback={(q: number) => { this.setState({ showModal: false, snackOpen: true, snackMessage: "Article ajouté dans votre panier !", snackType: "info" }); this.props.updateBasketContent({ itemID: this.state.selectedProductId, quantity: q, add: true }) }} item={this.state.stall.items.find(elem => elem.id == this.state.selectedProductId)} />
+            {this.state.stall.items.find(elem => elem.id === this.state.selectedProductId) !== undefined ?
+                <ArticlePreview callback={(q: number) => { this.setState({ showModal: false, snackOpen: true, snackMessage: "Article ajouté dans votre panier !", snackType: "info" }); this.props.updateBasketContent({ itemID: this.state.selectedProductId, quantity: q, add: true }) }} item={this.state.stall.items.find(elem => elem.id === this.state.selectedProductId)} />
                 :
                 <h4>Une erreur s'est produite</h4>}
         </div>;
@@ -125,11 +113,11 @@ class StallScreen extends Component<StallProps> {
             open={this.state.showModal}
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', }}
             onClose={() => this.setState({ showModal: false })}>
-            <Card style={{ padding: 10, outline: "none", width: this.state.modalType == "articles" ? "" : "80%" }}>
+            <Card style={{ padding: 10, outline: "none", width: this.state.modalType === "articles" ? "" : "80%" }}>
                 <div style={{ cursor: 'pointer' }} onClick={() => this.setState({ showModal: false })}>
                     <Close />
                 </div>
-                {this.state.modalType == "articles" ? ArticleDetails : BasketDetails()}
+                {this.state.modalType === "articles" ? ArticleDetails : BasketDetails()}
             </Card>
 
 
@@ -194,7 +182,7 @@ class StallScreen extends Component<StallProps> {
                                 {
                                     this.state.stall.categories.map(cat => <Button onClick={() => this.setState({ selectedCategoryId: cat.id })} style={{ backgroundColor: "#35b8be", color: "#FAFAFA", padding: 10, display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                                         {cat.name}
-                                        {this.state.selectedCategoryId == cat.id ? <Check /> : null}
+                                        {this.state.selectedCategoryId === cat.id ? <Check /> : null}
                                     </Button>)
                                 }
                             </div>

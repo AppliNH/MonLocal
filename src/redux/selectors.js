@@ -4,7 +4,7 @@ export const getBasketContent = (state, stallID) => {
     var stallItems = [];
 
     state.stallsdata.stalls.forEach(stall => {
-        if (stall.name != "") {
+        if (stall.name !== "") {
             stall.items.map(item => stallItems.push(item));
         }
     })
@@ -12,11 +12,12 @@ export const getBasketContent = (state, stallID) => {
     //state.stallsdata.stalls.find(stall => stall.id == stallID).items;
 
     actualBasket.map(elem => {
-        const { name, price, image } = stallItems.find(item => item.id == elem.id);
+        const { name, price, image } = stallItems.find(item => item.id === elem.id);
         console.log(name);
         elem.name = name;
         elem.price = price;
         elem.image = image;
+        return null;
     });
 
     return actualBasket;

@@ -1,5 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import BottomNavig from "./components/Navbar/BottomNavig";

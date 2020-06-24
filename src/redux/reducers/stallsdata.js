@@ -1,5 +1,3 @@
-import Stall from "../../_models/StallModel";
-
 import FishMan from "../../assets/fishman.png"
 import MeatMan from "../../assets/meatman.png"
 import Fish from "../../assets/fish.png"

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button, Input, TextField } from '@material-ui/core';
+import { Card, Button, TextField } from '@material-ui/core';
 
 interface BasketArticleProps {
     item: any;
@@ -7,10 +7,7 @@ interface BasketArticleProps {
 }
 
 class BasketArticle extends Component<BasketArticleProps> {
-    constructor(props: BasketArticleProps) {
-        super(props);
 
-    }
     fullPrice = (this.props.item.quantity * this.props.item.price).toFixed(2);
     state = { showDeleteQuantity: false, deleteQuantity: 0, error: false };
 
@@ -18,7 +15,7 @@ class BasketArticle extends Component<BasketArticleProps> {
         let n = parseFloat(this.state.deleteQuantity.toString())
         console.log(typeof n)
         console.log(n)
-        if (n == undefined || n <= 0 || typeof n != "number" || isNaN(n)) {
+        if (n === undefined || n <= 0 || typeof n != "number" || isNaN(n)) {
             this.setState({ error: true })
         } else {
             this.props.callback(this.props.item.id, n);
@@ -38,7 +35,7 @@ class BasketArticle extends Component<BasketArticleProps> {
                             <h4 style={{ fontWeight: "normal", fontStyle: "italic" }}>{this.props.item.price}€/Kg</h4>
                         </div>
                         <Card style={{ padding: 5, flex: 3, display: 'flex', flexDirection: "column", alignItems: "center" }}>
-                            <img style={{ width: "8vmax", height: "5vmax" }} src={this.props.item.image} />
+                            <img alt="produit" style={{ width: "8vmax", height: "5vmax" }} src={this.props.item.image} />
 
                             <h3>{this.props.item.name}</h3>
                         </Card>
