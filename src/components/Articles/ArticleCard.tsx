@@ -21,7 +21,7 @@ const ArticleCard: React.StatelessComponent<ArticleCardProps> = (props) => {
                     <img src={image} style={{ alignSelf: "center", width: "7vmax", height: "4vmax" }} />
 
                     <div style={{ padding: 10, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                        <h2 style={{ fontSize: '5vw' }}>{name}</h2>
+                        <h2 style={{ fontSize: '1.3rem' }}>{name}</h2>
                         <h1>{price}€</h1>
                     </div>
                 </div>

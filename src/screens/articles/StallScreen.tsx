@@ -20,6 +20,7 @@ import ArticlePreview from "../../components/Articles/ArticlePreview";
 import BasketArticle from '../../components/Articles/BasketArticle';
 
 
+
 interface StallProps {
     stageNumber: number;
     stalls: Array<Stall>;
@@ -89,20 +90,30 @@ class StallScreen extends Component<StallProps> {
                 <h4>Une erreur s'est produite</h4>}
         </div>;
         // maxHeight: "70vh", maxWidth: "70vw",
-        const BasketDetails = <div style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 10 }}>
-            <div>
-                <h1>Votre panier: </h1>
-                <div style={{ display: "flex", flexWrap: "wrap", maxHeight: "60vh", overflow: "auto", padding: 10 }}>
-                    {getBasketContent(this.props.reduxState, this.state.stall.id).length > 0 ?
-                        getBasketContent(this.props.reduxState, this.state.stall.id).map((elem: any) =>
-                            //<ArticleCard callback={(productID: any) => { this.setState({ snackType: "error", snackMessage: "Article supprimé du panier !", snackOpen: true }); this.props.updateBasketContent({ itemID: productID, quantity: 1, add: false }) }} fromModal={false} fromBasket={true} item={elem} />)
-                            <BasketArticle callback={(productID: any, q: number) => { this.setState({ snackType: "error", snackMessage: "Quantité supprimée du panier !", snackOpen: true }); this.props.updateBasketContent({ itemID: productID, quantity: q, add: false }) }} item={elem} />)
-                        :
-                        <h3>Votre panier est vide </h3>
-                    }
+        const BasketDetails = () => {
+            let basketContent = getBasketContent(this.props.reduxState, this.state.stall.id);
+            let total = basketContent.length > 0 ? basketContent.reduce((t: number, e: any) => t + (e.price * e.quantity), 0).toFixed(2) : 0;
+
+            return (<div style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 10 }}>
+                <div>
+                    <h1>Votre panier: </h1>
+                    <div>
+                        {
+                            basketContent.length > 0 ?
+                                <div style={{ display: "flex", flexWrap: "wrap", maxHeight: "60vh", overflow: "auto", padding: 10 }}>
+                                    {basketContent.map((elem: any) =>
+                                        <BasketArticle callback={(productID: any, q: number) => { this.setState({ snackType: "error", snackMessage: "Quantité supprimée du panier !", snackOpen: true }); this.props.updateBasketContent({ itemID: productID, quantity: q, add: false }) }} item={elem} />)}
+                                </div>
+                            :
+                            <h3>Votre panier est vide </h3>
+                        }
+                        <h2>
+                            Total : <h2 style={{ color: "#35b8be" }}>{total}€</h2>
+                        </h2>
+                    </div>
                 </div>
-            </div>
-        </div>;
+            </div>);
+        }
 
         const SnackBarMessage = <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={this.state.snackOpen} onClose={() => this.setState({ snackOpen: false })} autoHideDuration={2000} >
             <Alert onClose={() => this.setState({ snackOpen: false })} severity={this.state.snackType}>
@@ -118,7 +129,7 @@ class StallScreen extends Component<StallProps> {
                 <div style={{ cursor: 'pointer' }} onClick={() => this.setState({ showModal: false })}>
                     <Close />
                 </div>
-                {this.state.modalType == "articles" ? ArticleDetails : BasketDetails}
+                {this.state.modalType == "articles" ? ArticleDetails : BasketDetails()}
             </Card>
 
 
@@ -226,10 +237,10 @@ function ArticlesGrid(articles: JSX.Element[]) {
     return <Fade style={{ flex: 4 }} timeout={3500} in={true}>
         <Card elevation={8} style={{
             maxHeight: "63vh",
-            alignItems: "center",  backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 15, display: "flex", flexWrap: 'wrap', overflow: "auto"
+            alignItems: "center", backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 15, display: "flex", flexWrap: 'wrap', overflow: "auto"
         }}>
 
-            {articles} 
+            {articles}
 
         </Card>
     </Fade>;
