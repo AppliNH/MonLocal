@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Snackbar, TextField, Button } from '@material-ui/core';
+import { Card, TextField, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { getBasketContent } from '../../redux/selectors';
 import BasketArticle from '../../components/Articles/BasketArticle';
@@ -9,7 +9,6 @@ import ThumbUp from '@material-ui/icons/ThumbUp';
 import Check from '@material-ui/icons/Check';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 
-import MuiAlert from '@material-ui/lab/Alert';
 import { Link } from 'react-router-dom';
 
 
@@ -22,9 +21,9 @@ interface PayScreenProps {
     updateArticlesStage: Function;
 }
 
-function Alert(props: any) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+// function Alert(props: any) {
+//     return <MuiAlert elevation={6} variant="filled" {...props} />;
+// }
 
 class PayScreen extends Component<PayScreenProps> {
 
@@ -38,11 +37,11 @@ class PayScreen extends Component<PayScreenProps> {
 
     render() {
 
-        const SnackBarMessage = <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={this.state.snackOpen} onClose={() => this.setState({ snackOpen: false })} autoHideDuration={2000} >
-            <Alert onClose={() => this.setState({ snackOpen: false })} severity={this.state.snackType}>
-                <h2>{this.state.snackMessage}</h2>
-            </Alert>
-        </Snackbar>
+        // const SnackBarMessage = <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={this.state.snackOpen} onClose={() => this.setState({ snackOpen: false })} autoHideDuration={2000} >
+        //     <Alert onClose={() => this.setState({ snackOpen: false })} severity={this.state.snackType}>
+        //         <h2>{this.state.snackMessage}</h2>
+        //     </Alert>
+        // </Snackbar>
 
         let basketContent = getBasketContent(this.props.reduxState);
         let total = basketContent.length > 0 ? basketContent.reduce((t: number, e: any) => t + (e.price * e.quantity), 0).toFixed(2) : 0;
