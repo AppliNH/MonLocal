@@ -12,6 +12,7 @@ import { Route } from 'react-router-dom';
 import Articles from './screens/Articles';
 import NotFound from './screens/NotFound';
 import Recipes from './screens/Recipes';
+import PayScreen from './screens/articles/PayScreen';
 
 class App extends Component {
 
@@ -36,6 +37,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Main}></Route>
             <Route exact path="/articles" component={Articles}></Route>
+            <Route exact path="/articles/pay" component={PayScreen}></Route>
             <Route exact path="/recipes" component={Recipes}></Route>
             <Route component={NotFound}></Route>
           </Switch>

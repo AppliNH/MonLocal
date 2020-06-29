@@ -1,4 +1,4 @@
-import { UPDATE_ROUTE, UPDATE_BASKET_CONTENT } from "../actionTypes";
+import { UPDATE_ROUTE, UPDATE_BASKET_CONTENT, EMPTY_BASKET_CONTENT } from "../actionTypes";
 
 const initialState = {
   route: window.location.pathname,
@@ -35,11 +35,18 @@ export default function (state = initialState, action) {
         localBasket.push({ id: itemID, quantity: quantity })
       }
 
-     let actualBasket = localBasket.filter(e => e.quantity > 0)
-      
+      let actualBasket = localBasket.filter(e => e.quantity > 0)
+
       nextState = {
         ...state,
         basket: actualBasket
+      }
+      return nextState || state;
+    }
+    case EMPTY_BASKET_CONTENT: {
+      nextState = {
+        ...state,
+        basket: []
       }
       return nextState || state;
     }
