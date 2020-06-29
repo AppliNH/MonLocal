@@ -131,7 +131,7 @@ class StallScreen extends Component<StallProps> {
                         <Card elevation={8} style={{ borderRadius: 50, display: 'flex', flexDirection: 'row', marginTop: 30, marginLeft: 15, marginRight: 15 }}>
 
                             {this.state.previousStall.name !== "" ?
-                                <div onClick={() => this.previousStage()} style={{ flex: 1, cursor: "pointer", padding: 10, backgroundColor: "#FAFAFA", display: 'flex', flexDirection: "column", alignItems: "center" }}>
+                                <div onClick={() => this.previousStage()} style={{ flex: 1, alignSelf: "center", cursor: "pointer", padding: 10, backgroundColor: "#FAFAFA", display: 'flex', flexDirection: "column", alignItems: "center" }}>
                                     <h3 style={{ margin: 0, fontSize: "1.2rem", color: this.state.previousStall.color, textAlign: "center" }}>Revenir chez votre {this.state.previousStall.name}</h3>
                                     <ArrowBack style={{ color: this.state.previousStall.color, alignSelf: 'center' }} />
                                 </div>

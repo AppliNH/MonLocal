@@ -74,7 +74,7 @@ class PayScreen extends Component<PayScreenProps> {
                                                 <h2>
                                                     Total :
                                             </h2>
-                                                <h2 style={{ color: "#35b8be" }}>{total}€</h2>
+                                                <h2 style={{ color: "#35b8be", fontSize: "2rem" }}>{total}€</h2>
                                             </div>
                                             <Button onClick={() => this.setState({ basketCheck: true })} style={{ backgroundColor: "#35b8be", color: "#FAFAFA" }}>Valider le panier
                                         <Check />
