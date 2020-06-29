@@ -55,6 +55,7 @@ class PayScreen extends Component<PayScreenProps> {
                             <Link to="/articles" style={{ textDecoration: "none" }}>
                                 <Button style={{ backgroundColor: "red", color: "#FAFAFA" }}> <ChevronLeft /> Retourner aux échoppes</Button>
                             </Link>
+                            <h1 style={{ color: "#FAFAFA", textAlign: "center" }}>Récapitulatif</h1>
                             <Card style={{ padding: 10, margin: 10, flex: 1 }}>
                                 <div>
                                     <h1>Votre panier: </h1>
@@ -103,7 +104,7 @@ class PayScreen extends Component<PayScreenProps> {
                                         </div>
 
                                         <h4>Entrez votre numéro de téléphone ici et nous vous appellerons pour vous guider: </h4>
-                                        <TextField type="number" placeholder="Tapez votre numéro ici" style={{ width: "100%" }} />
+                                        <TextField inputMode="numeric" type="number" placeholder="Tapez votre numéro ici" style={{ width: "100%" }} />
                                     </Card>
                                 </div>
                                 <Card style={{ margin: 10, padding: 10, }} >
@@ -111,7 +112,7 @@ class PayScreen extends Component<PayScreenProps> {
                                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                                         <TextField placeholder="Adresse" style={{ margin: 10 }} />
                                         <TextField placeholder="Ville" style={{ margin: 10 }} />
-                                        <TextField placeholder="Téléphone" type="number" style={{ margin: 10 }} />
+                                        <TextField inputMode="numeric" placeholder="Téléphone" type="number" style={{ margin: 10 }} />
                                     </div>
                                     <div style={{ display: "flex", flexDirection: "row" }}>
                                         <Link to="/" onClick={() => this.cancelAll()} style={{ textDecoration: "none", }}>
