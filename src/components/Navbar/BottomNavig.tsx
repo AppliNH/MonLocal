@@ -39,7 +39,7 @@ class BottomNavig extends Component<BottomNavigProps> {
           <BottomNavigationAction component={Link}
             to="/articles"
             onClick={() => this.dispatchRoute("/articles")}
-            value="/articles" label={<p style={{ margin: 0, padding: 0, textAlign: 'center' }}>Échoppes</p>} icon={<LocalMall />} />
+            value={"/articles" || "/articles/pay"} label={<p style={{ margin: 0, padding: 0, textAlign: 'center' }}>Échoppes</p>} icon={<LocalMall />} />
           <BottomNavigationAction component={Link}
             to="/recipes"
             onClick={() => this.dispatchRoute("/recipes")}

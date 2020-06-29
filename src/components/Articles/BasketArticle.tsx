@@ -8,8 +8,7 @@ interface BasketArticleProps {
 
 class BasketArticle extends Component<BasketArticleProps> {
 
-    fullPrice = (this.props.item.quantity * this.props.item.price).toFixed(2);
-    state = { showDeleteQuantity: false, deleteQuantity: 0, error: false };
+    state = { showDeleteQuantity: false, deleteQuantity: 0, error: false, fullPrice: (this.props.item.quantity * this.props.item.price).toFixed(2) };
 
     validateInput() {
         let n = parseFloat(this.state.deleteQuantity.toString())
@@ -19,16 +18,16 @@ class BasketArticle extends Component<BasketArticleProps> {
             this.setState({ error: true })
         } else {
             this.props.callback(this.props.item.id, n);
-            this.setState({ showDeleteQuantity: false })
+            this.setState({ showDeleteQuantity: false, fullPrice: (this.props.item.quantity * this.props.item.price).toFixed(2) })
         }
 
     }
 
     render() {
         return (
-            <div style={{ margin: 10 }}>
+            <div style={{ margin: 5 }}>
 
-                <Card elevation={8} style={{ width: "25vmax", padding: 10, display: "flex", flexDirection: "column" }}>
+                <Card elevation={8} style={{ width: "15rem", padding: 10, display: "flex", flexDirection: "column" }}>
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", flex: 5 }}>
                         <div style={{ flex: 3 }}>
                             <h2 style={{ fontSize: "3vmax" }}>{this.props.item.quantity}Kg</h2>
@@ -45,16 +44,16 @@ class BasketArticle extends Component<BasketArticleProps> {
                     {
                         this.state.showDeleteQuantity ?
                             <div style={{ flexDirection: "column", display: "flex", flex: 1, marginTop: 10 }}>
-                                <TextField onChange={(e) => this.setState({ deleteQuantity: e.target.value })} helperText={this.state.error ? "Vous avez oublié la quantité" : null} error={this.state.error} variant="outlined" size="medium" InputProps={{ style: { fontSize: "1.5vmax" } }} type="number" inputMode="numeric" fullWidth placeholder="Quantité à supprimer" />
+                                <TextField onChange={(e) => this.setState({ deleteQuantity: e.target.value })} helperText={this.state.error ? "Vous avez oublié la quantité" : null} error={this.state.error} variant="outlined" size="medium" InputProps={{ style: { fontSize: "1rem" } }} type="number" inputMode="numeric" fullWidth placeholder="Quantité à supprimer" />
                                 <Button onClick={() => this.validateInput()} style={{ backgroundColor: "red", color: "#FAFAFA" }}>Supprimer</Button>
                                 <Button onClick={() => this.setState({ showDeleteQuantity: false })} style={{ backgroundColor: "#FAFAFA", color: "#35b8be" }}>Annuler</Button>
                             </div>
                             :
                             <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                                 <Button onClick={() => this.setState({ showDeleteQuantity: true })} style={{ color: "#FAFAFA", backgroundColor: "red", margin: 0 }}>
-                                    <h1 style={{ fontSize: "1.5vmax" }}>Supprimer</h1>
+                                    <h1 style={{ fontSize: "1rem" }}>Supprimer</h1>
                                 </Button>
-                                <h1 style={{ color: "#35b8be", fontSize: "3vmax" }} >{this.fullPrice}€</h1>
+                                <h1 style={{ color: "#35b8be", fontSize: "2rem" }} >{this.state.fullPrice}€</h1>
                             </div>
                     }
 

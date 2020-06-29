@@ -79,7 +79,7 @@ class StallScreen extends Component<StallProps> {
         </div>;
         // maxHeight: "70vh", maxWidth: "70vw",
         const BasketDetails = () => {
-            let basketContent = getBasketContent(this.props.reduxState, this.state.stall.id);
+            let basketContent = getBasketContent(this.props.reduxState);
             let total = basketContent.length > 0 ? basketContent.reduce((t: number, e: any) => t + (e.price * e.quantity), 0).toFixed(2) : 0;
 
             return (<div style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 10 }}>
@@ -92,8 +92,8 @@ class StallScreen extends Component<StallProps> {
                                     {basketContent.map((elem: any) =>
                                         <BasketArticle callback={(productID: any, q: number) => { this.setState({ snackType: "error", snackMessage: "Quantité supprimée du panier !", snackOpen: true }); this.props.updateBasketContent({ itemID: productID, quantity: q, add: false }) }} item={elem} />)}
                                 </div>
-                            :
-                            <h3>Votre panier est vide </h3>
+                                :
+                                <h3>Votre panier est vide </h3>
                         }
                         <h2>
                             Total : <h2 style={{ color: "#35b8be" }}>{total}€</h2>
@@ -103,7 +103,7 @@ class StallScreen extends Component<StallProps> {
             </div>);
         }
 
-        const SnackBarMessage = <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={this.state.snackOpen} onClose={() => this.setState({ snackOpen: false })} autoHideDuration={2000} >
+        const SnackBarMessage = <Snackbar anchorOrigin={{ vertical: "bottom", horizontal: "center" }} open={this.state.snackOpen} onClose={() => this.setState({ snackOpen: false })} autoHideDuration={2000} >
             <Alert onClose={() => this.setState({ snackOpen: false })} severity={this.state.snackType}>
                 <h2>{this.state.snackMessage}</h2>
             </Alert>
@@ -156,10 +156,12 @@ class StallScreen extends Component<StallProps> {
                                     <ArrowForward style={{ color: this.state.nextStall.color, alignSelf: 'center' }} />
                                 </div>
                                 :
-                                <div style={{ padding: 10, flex: 1, backgroundColor: "#35b8be", display: 'flex', flexDirection: "column", alignItems: "center" }}>
-                                    <h3 style={{ margin: 0, fontSize: "1.2rem", color: "#FAFAFA", textAlign: "center" }}>Payer</h3>
-                                    <CreditCard style={{ color: "#FAFAFA", alignSelf: 'center' }} />
-                                </div>
+                                <Link to="/articles/pay" style={{ backgroundColor: "#35b8be", textDecoration: "none", flex: 1, display: "flex", padding: 10 }}>
+                                    <div style={{ padding: 10, flex: 1, backgroundColor: "#35b8be", display: 'flex', flexDirection: "column", alignItems: "center", alignSelf: "center" }}>
+                                        <h3 style={{ margin: 0, fontSize: "1.2rem", color: "#FAFAFA", textAlign: "center" }}>Payer</h3>
+                                        <CreditCard style={{ color: "#FAFAFA", alignSelf: 'center' }} />
+                                    </div>
+                                </Link>
                             }
                         </Card>
                     </div>

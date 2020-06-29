@@ -1,4 +1,4 @@
-export const getBasketContent = (state, stallID) => {
+export const getBasketContent = (state) => {
     console.log(state)
     var actualBasket = state.data.basket;
     var stallItems = [];
@@ -13,7 +13,7 @@ export const getBasketContent = (state, stallID) => {
 
     actualBasket.map(elem => {
         const { name, price, image } = stallItems.find(item => item.id === elem.id);
-        console.log(name);
+        
         elem.name = name;
         elem.price = price;
         elem.image = image;
