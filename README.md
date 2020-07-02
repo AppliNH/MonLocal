@@ -1,3 +1,14 @@
+# MonLocal
+
+School Project - React PWA w/ TS - Shopping app intended for the elderly
+
+Runs @ https://monlocal.netlify.app
+
+For detailed informations, have a look [here](https://github.com/AppliNH/MonLocal/wiki/Compte-rendu).
+
+
+# Misc
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
