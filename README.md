@@ -4,6 +4,20 @@ School Project - React PWA w/ TS - Shopping app intended for the elderly
 
 Runs @ https://monlocal.netlify.app
 
+This webApp has been designed to offer optimal experiences on any kind of device.
+
+So we made it highly responsive, and we took care that the app respects mobile UX standards.
+
+Here's a preview :
+
+
+<div>
+  <img height=400 src="https://raw.githubusercontent.com/wiki/AppliNH/MonLocal/poissonier.png" />
+  <img height=400 src="https://cdn.discordapp.com/attachments/512281879827972116/725356427782258799/unknown.png" />
+</div>
+
+
+
 For detailed informations, have a look [here](https://github.com/AppliNH/MonLocal/wiki/Compte-rendu).
 
 
